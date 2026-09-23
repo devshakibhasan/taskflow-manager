@@ -14,6 +14,22 @@ app.use(cors());
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 
+// Parse raw buffer or string body emitted by serverless-http in AWS/Netlify Lambda
+app.use((req, res, next) => {
+    if (Buffer.isBuffer(req.body)) {
+        try {
+            req.body = JSON.parse(req.body.toString("utf-8"));
+        } catch (e) {
+            req.body = {};
+        }
+    } else if (typeof req.body === "string" && req.body.trim()) {
+        try {
+            req.body = JSON.parse(req.body);
+        } catch (e) {}
+    }
+    next();
+});
+
 // Ensure MongoDB Atlas is connected before routing requests
 app.use(async (req, res, next) => {
     try {
