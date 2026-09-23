@@ -8,13 +8,26 @@ try {
     // Ignore if not permitted
 }
 
+let cachedConn = null;
+
 const connectDB = async () => {
+    if (cachedConn && mongoose.connection.readyState === 1) {
+        return cachedConn;
+    }
+
     try {
-        const conn = await mongoose.connect(process.env.MONGO_URL);
+        const conn = await mongoose.connect(process.env.MONGO_URL, {
+            serverSelectionTimeoutMS: 5000,
+        });
+        cachedConn = conn;
         console.log(`[Database] MongoDB connected successfully: ${conn.connection.host}`);
+        return conn;
     } catch (error) {
         console.error(`[Database Error] Connection failed: ${error.message}`);
-        process.exit(1);
+        if (!process.env.NETLIFY) {
+            process.exit(1);
+        }
+        throw error;
     }
 };
 

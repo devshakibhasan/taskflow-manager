@@ -7,9 +7,9 @@ import TaskForm from "../components/TaskForm";
 import TaskList from "../components/TaskList";
 import { Search, X } from "../components/Icons";
 
-const API_BASE = import.meta.env.VITE_API_URL || "http://localhost:4000";
+const API_BASE = import.meta.env.VITE_API_URL || "";
 const CLEAN_BASE = API_BASE.replace(/\/+$/, "");
-const API_URL = CLEAN_BASE.endsWith("/tasks") ? CLEAN_BASE : `${CLEAN_BASE}/tasks`;
+const API_URL = CLEAN_BASE ? (CLEAN_BASE.endsWith("/tasks") ? CLEAN_BASE : `${CLEAN_BASE}/tasks`) : "/tasks";
 
 /**
  * TaskFlow Manager - Home Page Dashboard
