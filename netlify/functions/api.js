@@ -20,12 +20,18 @@ app.use(async (req, res, next) => {
         await connectDB();
         next();
     } catch (err) {
-        next(err);
+        console.error("[Netlify Function DB Error]:", err.message);
+        return res.status(500).json({
+            success: false,
+            message: `Database connection error: ${err.message}`,
+        });
     }
 });
 
-// Mount routes across all standard prefix variations
+// Mount routes across all path variations
+app.use("/.netlify/functions/api/tasks", taskRoutes);
 app.use("/.netlify/functions/api", taskRoutes);
+app.use("/tasks", taskRoutes);
 app.use("/api", taskRoutes);
 app.use("/", taskRoutes);
 

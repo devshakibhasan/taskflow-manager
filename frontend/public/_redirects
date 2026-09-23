@@ -1,1 +1,4 @@
-/*    /index.html   200
+/tasks/*    /.netlify/functions/api/tasks/:splat   200!
+/tasks      /.netlify/functions/api/tasks          200!
+/api/*      /.netlify/functions/api/:splat         200!
+/*          /index.html                            200

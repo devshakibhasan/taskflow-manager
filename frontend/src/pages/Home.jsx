@@ -9,7 +9,11 @@ import { Search, X } from "../components/Icons";
 
 const API_BASE = import.meta.env.VITE_API_URL || "";
 const CLEAN_BASE = API_BASE.replace(/\/+$/, "");
-const API_URL = CLEAN_BASE ? (CLEAN_BASE.endsWith("/tasks") ? CLEAN_BASE : `${CLEAN_BASE}/tasks`) : "/tasks";
+const API_URL = CLEAN_BASE
+    ? (CLEAN_BASE.endsWith("/tasks") ? CLEAN_BASE : `${CLEAN_BASE}/tasks`)
+    : (typeof window !== "undefined" && window.location.hostname.includes("netlify.app")
+        ? "/.netlify/functions/api/tasks"
+        : "/tasks");
 
 /**
  * TaskFlow Manager - Home Page Dashboard
@@ -31,7 +35,9 @@ const Home = () => {
             const { data } = await axios.get(API_URL);
             setTasks(data.tasks || []);
         } catch (error) {
-            toast.error(error.response?.data?.message || "Failed to load tasks");
+            console.error("Fetch tasks error:", error);
+            const msg = error.response?.data?.message || error.message || "Failed to load tasks";
+            toast.error(msg);
         }
     };
 
@@ -82,7 +88,9 @@ const Home = () => {
             }
             resetForm();
         } catch (error) {
-            toast.error(error.response?.data?.message || "Operation failed");
+            console.error("Submit task error:", error);
+            const msg = error.response?.data?.message || error.message || "Operation failed";
+            toast.error(msg);
         } finally {
             setLoading(false);
         }
@@ -106,7 +114,9 @@ const Home = () => {
             }
             toast.success("Task deleted");
         } catch (error) {
-            toast.error(error.response?.data?.message || "Failed to delete task");
+            console.error("Delete task error:", error);
+            const msg = error.response?.data?.message || error.message || "Failed to delete task";
+            toast.error(msg);
         }
     };
 
@@ -132,7 +142,9 @@ const Home = () => {
                 toast.info("Task marked active");
             }
         } catch (error) {
-            toast.error(error.response?.data?.message || "Failed to update status");
+            console.error("Toggle status error:", error);
+            const msg = error.response?.data?.message || error.message || "Failed to update status";
+            toast.error(msg);
         }
     };
 
