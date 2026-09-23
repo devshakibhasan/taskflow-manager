@@ -4,6 +4,7 @@
 > **Standard:** MERN Stack Web Development Assessment — Specification Sheet-1  
 > **Live Site:** [https://taskflow-manager-shakib.netlify.app/](https://taskflow-manager-shakib.netlify.app/)  
 > **GitHub Repository:** [https://github.com/devshakibhasan/taskflow-manager](https://github.com/devshakibhasan/taskflow-manager)  
+> **Author / Created By:** Md. Shakib Hasan Patwary ([@devshakibhasan](https://github.com/devshakibhasan))  
 
 ---
 
