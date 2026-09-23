@@ -1,7 +1,9 @@
 # TaskFlow Manager Application (MERN Stack)
 
 > **Job Name:** Develop a TaskFlow Manager Application where a user can manage their daily tasks.  
-> **Standard:** MERN Stack Web Development Assessment — Specification Sheet-1
+> **Standard:** MERN Stack Web Development Assessment — Specification Sheet-1  
+> **Live Site:** [https://taskflow-manager-shakib.netlify.app/](https://taskflow-manager-shakib.netlify.app/)  
+> **GitHub Repository:** [https://github.com/devshakibhasan/taskflow-manager](https://github.com/devshakibhasan/taskflow-manager)  
 
 ---
 
@@ -162,5 +164,6 @@ UI will run on: **`http://localhost:5173`**
   - [x] Error handling for invalid IDs
 - [x] **Part D - Integration & Deliverables**:
   - [x] Full client-server communication verified
-  - [x] Git version control initialized
+  - [x] Git version control initialized ([GitHub Repo](https://github.com/devshakibhasan/taskflow-manager))
+  - [x] Live public deployment ([Live Netlify Site](https://taskflow-manager-shakib.netlify.app/))
   - [x] Complete documentation provided
